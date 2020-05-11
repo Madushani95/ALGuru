@@ -53,75 +53,69 @@ require __DIR__ . '/vendor/autoload.php';
  */
 function getClient()
 {
-    $client = new Google_Client();
-    $client->setApplicationName('ALGuru');
-    $client->setScopes(Google_Service_Calendar::CALENDAR);
-    $client->setAuthConfig('client_secret.json');
-    $client->setAccessType('offline');
-    $client->setPrompt('select_account consent');
+    $gClient = new Google_Client();
+    $gClient->setApplicationName('ALGuru');
+    $gClient->setScopes(Google_Service_Calendar::CALENDAR);
+    $gClient->setAuthConfig('client_secret.json');
+    $gClient->setAccessType('offline');
+    $gClient->setPrompt('select_account consent');
 
     // Load previously authorized token from a file, if it exists.
     // The file token.json stores the user's access and refresh tokens, and is
     // created automatically when the authorization flow completes for the first
     // time.
-    $tokenPath = 'token.json';
-    if (file_exists($tokenPath)) {
-        $accessToken = json_decode(file_get_contents($tokenPath), true);
-        $client->setAccessToken($accessToken);
+    $userTokenPath = 'token.json';
+    if (file_exists($userTokenPath)) {
+        $appToken = json_decode(file_get_contents($userTokenPath), true);
+        $gClient->setAccessToken($appToken);
     }
 
     // If there is no previous token or it's expired.
-    if ($client->isAccessTokenExpired()) {
+    if ($gClient->isAccessTokenExpired()) {
         // Refresh the token if possible, else fetch a new one.
-        if ($client->getRefreshToken()) {
-            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+        if ($gClient->getRefreshToken()) {
+            $gClient->fetchAccessTokenWithRefreshToken($gClient->getRefreshToken());
         } else {
             // Request authorization from the user.
-          
-
-            if(!credentials_in_browser()) {
-                
-                $authUrl = $client->createAuthUrl();
-               
-                     
-              return "<p>Sign to use this service!</p><a href='$authUrl'><button class='button' style='vertical-align:middle'><i class='fa fa-google' style='padding:0px 20px 5px 5px'></i>
-				<span> Sign In </span></button></a>";
-                
+            if(!browserCredentials()) {
+                $authUrl = $gClient->createAuthUrl();
+                return "<p>Sign to use this service!</p><a href='$authUrl'><button class='button' style='vertical-align:middle'><i class='fa fa-google' style='padding:0px 20px 5px 5px'></i><span> Sign In </span></button></a>";
             }
-   
             $authCode = $_GET['code'];
             
             // Exchange authorization code for an access token.
-            $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-            $client->setAccessToken($accessToken);
+            $appToken = $gClient->fetchAccessTokenWithAuthCode($authCode);
+            $gClient->setAccessToken($appToken);
             
             // Check to see if there was an error.
-            if (array_key_exists('error', $accessToken)) {
-                throw new Exception(join(', ', $accessToken));
+            if (array_key_exists('error', $appToken)) {
+                throw new Exception(join(', ', $appToken));
             }
         }
         // Save the token to a file.
-        if (!file_exists(dirname($tokenPath))) {
-            mkdir(dirname($tokenPath), 0700, true);
+        if (!file_exists(dirname($userTokenPath))) {
+            mkdir(dirname($userTokenPath), 0700, true);
         }
-        file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+        file_put_contents($userTokenPath, json_encode($gClient->getAccessToken()));
     }
-    return $client;
+    return $gClient;
 }
 
-function credentials_in_browser() {
+//check browser url has the auth code
+function browserCredentials() {
     if(isset($_GET['code'])) return true;
 
     return false;
 }
 
-$client = getClient();
+//get authorized API client
+$gClient = getClient();
 
-if(! is_a ($client, "Google_Client")) {
-        echo $client;
+if(! is_a ($gClient, "Google_Client")) {
+        echo $gClient;
 }
 else { 
-        
+            //dispaly the content of physics page
            include 'content.php'   ; 
             
     
