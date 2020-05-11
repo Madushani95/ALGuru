@@ -2,11 +2,10 @@
 require __DIR__ . '/vendor/autoload.php';
 
                 
-$client = getClient();
-$service = new Google_Service_Calendar($client);
-$event = new Google_Service_Calendar_Event(array(
+$gClient = getClient();
+$gService = new Google_Service_Calendar($gClient);
+$gEvent = new Google_Service_Calendar_Event(array(
           'summary' => $summary ,
-          //'location' => '800 Howard St., San Francisco, CA 94103',
           'description' => $description ,
           'start' => array(
             'dateTime' => $start ,
@@ -22,15 +21,15 @@ $event = new Google_Service_Calendar_Event(array(
             'useDefault' => FALSE,
             'overrides' => array(
               array('method' => 'email', 'minutes' => 24 * 60),
-              array('method' => 'popup', 'minutes' => 10),
+              array('method' => 'popup', 'minutes' => 15),
             ),
           ),
 ));
 
-        $calendarId = 'primary';
-        $event = $service->events->insert($calendarId, $event);
+        $gCalendarId = 'primary';
+        $gEvent = $gService->events->insert($gCalendarId, $gEvent);
         echo '<script type="text/javascript">';
-        echo ' alert("Program successfully added to your calendar!");'; 
+        echo ' alert("Program is successfully added to your calendar!");'; 
         echo 'window.location.href = "http://localhost/ALGuru/physics.php";';
         echo '</script>';
 
