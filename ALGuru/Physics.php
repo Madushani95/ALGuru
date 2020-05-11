@@ -28,6 +28,7 @@
 				<a href="index.php"><img class="img-fluid" src="images/logoM.png" /></a>
 			</div>
 			<div class="col-sm-8">
+                <!--display date and time-->
 				<h5 class="text-right" 	id="date"></h5>
                 <h5 class="text-right" 	id="time"></h5>
                 <script>
@@ -45,6 +46,7 @@
 		
 	<div class="container" style="padding:30px; background-image: url(images/back6.jpg);background-position: center;background-repeat: no-repeat;background-size: cover;">
 	<div class="row mb-3">
+        <!-- heading -->
         <h2 class="text-center">Upcoming Lessons</h2>
         
     </div>
@@ -52,6 +54,7 @@
         
     
 		<div class="col-sm-9">
+            <!-- check for the user login-->
 		   <?php include 'connection.php';?>
             
 
@@ -61,6 +64,8 @@
 	
 	</div>
 	</div>
+        
+    <!-- footer -->
 	<div class=" text-center" style="background-color:#212529;color:#ffffff;padding:20px 0;">
 		<p>Copyright © 2020 ALGuru T&amp;P</p>
 	</div>
