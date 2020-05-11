@@ -25,8 +25,6 @@ http://localhost/ALGuru/
 ***Adding port address with localhost may not function ALGuru correctly. So please remove port address before running.***
 
 ### Step 5
-You'll get the Home page. Now you can click on Physics (
-**only physics page is working at the moment
-), Sign in and add any events to your calendar.
+You'll get the Home page. Now you can click on Physics (only physics page is working at the moment), Sign in and add any events to your calendar.
 
 ***Only SLIIT accounts have access***
