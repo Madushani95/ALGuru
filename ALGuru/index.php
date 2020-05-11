@@ -21,6 +21,7 @@
 			<div class="col-sm-4">
 				<a href="index.php"><img class="img-fluid" src="images/logoM.png" /></a>
 			</div>
+            <!--display date and time-->
 			<div class="col-sm-8">
 				<h5 class="text-right" 	id="date"></h5>
                 <h5 class="text-right" 	id="time"></h5>
@@ -41,12 +42,13 @@
 	
 	<div class="row">
         
-    
+        <!-- logo and description-->
 		<div class="col-sm-6">
-        
+            
 			<img class="img-fluid text-center" src="images/logoM2.png" />
 		
 		</div>
+        <!--button area-->
         <div class="col-sm-3">
 			<a href="Physics.php" class="btn btn-info btn-block" role="button">Physics</a>
 			<a href="Chemistry.php" class="btn btn-info btn-block" role="button">Chemistry</a>
@@ -63,6 +65,8 @@
 	
 	</div>
 	</div>
+      
+    <!-- footer -->
 	<div class=" text-center" style="background-color:#212529;color:#ffffff;padding:20px 0;">
 		<p>Copyright © 2020 ALGuru T&amp;P</p>
 	</div>
