@@ -1,7 +1,10 @@
 # ALGuru
 
 **SS Assingment 2**
+
 **OAuth 2.0 Framework**
+
+**[Video Demonstration](https://youtu.be/xH6bRRSixY0)**
 
 ## Testing
 
@@ -25,5 +28,3 @@ http://localhost/ALGuru/
 You'll get the Home page. Now you can click on Physics, Sign in and add any events to your calander.
 
 ***Only SLIIT accounts have access***
-
-**[Video Demonstration](https://youtu.be/xH6bRRSixY0)**
